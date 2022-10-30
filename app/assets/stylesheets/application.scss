@@ -3,6 +3,7 @@
 html {
     height: 100%;
 }
+
 body {
     min-height: 100%;
     background-image: linear-gradient(rgb(112, 163, 230) ,rgb(65, 32, 182));
@@ -13,6 +14,12 @@ body {
     height: 250px;
     width: 200px;
 }
+
+.large-poster{
+    height: 500px;
+    width: 400px;
+}
+
 .logo{
     height: 15px;
     width: 30px;

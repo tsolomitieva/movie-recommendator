@@ -6,7 +6,7 @@
        <div class="card-body p-5 text-center">
           <div class="card  bg-transparent text-white border">
             <div class="card-body p-5 text-center">
-              <h2 class="fw-bold mb-2"> Add New Movie</h2> 
+              <h2 class="fw-bold mb-2">Insert Movie's Details </h2> 
               <% if movie.errors.any? %>
                 <% movie.errors.each do |error| %>
                   <%= error.full_message %>
@@ -29,11 +29,12 @@
                    <%= form.text_area:plot, placeholder: "Plot",  class:"form-control  bg-light border "%>
                 </div>
               </div>
-              <%= form.submit class:"btn btn-dark mt-5",value: "Add Movie" %>
+              <%= form.submit class:"btn btn-dark mt-5",value: "Save Movie" %>
             </div>
           </div>
         </div>
       <div>
+      <%= link_to "Back to movies", movies_path, class:" mt-2 text-muted" %>
     </div>
   </div>
   
