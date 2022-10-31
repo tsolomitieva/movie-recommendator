@@ -1,0 +1,5 @@
+class RemovePlotFromMovie < ActiveRecord::Migration[7.0]
+  def change
+    remove_column :movies, :plot, :string
+  end
+end
