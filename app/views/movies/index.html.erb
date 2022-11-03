@@ -7,6 +7,7 @@
 
   <div class="row mt-5">
     <% @movies.each do |movie| %>
+      
       <%= render movie %>
       <p>
         <%= link_to "Show this movie", movie, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline" %>
