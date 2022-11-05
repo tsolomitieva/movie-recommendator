@@ -12,11 +12,21 @@
         <li class="nav-item">
             <%= link_to "Add movie", new_movie_path, class: "nav-link active" %>
         </li>
+        <li class="nav-item">
+            <%= link_to "Add category", new_category_path, class: "nav-link active" %>
+        </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-light" type="submit">Search</button>
-      </form>
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <% user_signed_in? %>
+       
+        <li class="nav-item">
+              <%= link_to "", edit_user_registration_path, class: "nav-link active bi bi-person-circle" %>
+        </li>
+        <li class="nav-item">
+              <%= button_to "Logout", destroy_user_session_path, method: :delete, data: {turbo: false}, class: "nav-link active" %>
+        </li>
+        <%%>
+      </ul>
     </div>
   </div>
 </nav>

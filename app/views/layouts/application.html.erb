@@ -9,13 +9,16 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
-
-  <%= render "layouts/navbar" %>
+ 
+    <%= render "layouts/navbar" if user_signed_in? %>
+   
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+   
+    <p class="notice text-white"><%= notice %></p>
+    <p class="alert text-white"><%= alert %></p>
     <%= yield %>
 
   </body>
+
 </html>
