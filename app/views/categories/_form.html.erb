@@ -1,0 +1,29 @@
+<%= form_with(model: category) do |form| %>
+  
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card-body p-5 text-center">
+                    <div class="card  bg-transparent text-white border">
+                        <div class="card-body p-5 text-center">
+                            <h2 class="fw-bold mb-2">Add new category</h2> 
+                            <% if category.errors.any? %>
+                                <% category.errors.each do |error| %>
+                                    <%= error.full_message %>
+                                <% end %>
+                            <% end %>
+                            <div class="mb-4 mt-5">
+                                 <%= form.text_field :name, class:"form-control bg-light border", placeholder: "Name for the category" %>
+                            </div>
+                
+                                <%= form.submit class:"btn btn-dark mt-5",value: "Add" %>
+                            </div>
+                        </div>
+                    </div>
+                <div>
+            </div>
+        </div>
+    </div>
+    
+<% end %>
+  
