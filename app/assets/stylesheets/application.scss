@@ -1,6 +1,27 @@
 @import'../../../node_modules/bootstrap/scss/bootstrap';
 @import '../../../node_modules/bootstrap-icons/font/bootstrap-icons';
+html {
+    height: 100%;
+}
+
 body {
-    background-image: linear-gradient(to right,rgb(128, 170, 255) ,rgb(71, 71, 209));
-    
-  }
+    min-height: 100%;
+    background-image: linear-gradient(rgb(112, 163, 230) ,rgb(65, 32, 182));
+}
+
+
+.poster{
+    height: 250px;
+    width: 200px;
+}
+
+.large-poster{
+    height: 500px;
+    width: 400px;
+}
+
+.logo{
+    height: 15px;
+    width: 30px;
+    margin-right:5px;
+}

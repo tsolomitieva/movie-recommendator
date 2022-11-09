@@ -1,27 +1,13 @@
-<div id="<%= dom_id movie %>">
-  <p>
-    <strong>Poster:</strong>
-    <%= movie.poster %>
-  </p>
 
-  <p>
-    <strong>Title:</strong>
-    <%= movie.title %>
-  </p>
 
-  <p>
-    <strong>Plot:</strong>
-    <%= movie.plot %>
-  </p>
+    <div class="col-md-4 text-center">
+      <%= image_tag(movie.poster, class:"poster mt-5") %> 
+      
+      <p class="text-white mt-4 fw-light fs-4 mb-2"><%= movie.title %></p>
+      <div class="d-inline p-2 fw-lighter text-white"><%= movie.year %></div>
+      <div class="d-inline p-2 fw-lighter text-white"><%= image_tag 'imdb.png', class:"logo" %><%= movie.rating%></div>  
+   
+      
+      
 
-  <p>
-    <strong>IMDB rating:</strong>
-    <%= movie.rating %>
-  </p>
 
-  <p>
-    <strong>Year:</strong>
-    <%= movie.year %>
-  </p>
-
-</div>
