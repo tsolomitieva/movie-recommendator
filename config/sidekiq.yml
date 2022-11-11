@@ -1,0 +1,30 @@
+development:
+  :concurrency: 50
+  :max_retries: 30
+  :timeout: 8
+  :queues:
+    - [critical, 1]
+    - [super_high, 2]
+    - [mailers, 3]
+    - [high, 4]
+    - [default, 5]
+    - [action_mailbox_routing, 6]
+    - [action_mailbox_incineration, 7]
+    - [active_storage_analysis, 8]
+    - [active_storage_purge, 9]
+    - [low, 10]
+production:
+  :concurrency: <%= ENV.fetch("SIDEKIQ_CONCURRENCY", 40) %> # 20 for staging, 40 for production
+  :max_retries: 3000
+  :timeout: 8
+  :queues:
+    - [critical, 1]
+    - [super_high, 2]
+    - [mailers, 3]
+    - [high, 4]
+    - [default, 5]
+    - [action_mailbox_routing, 6]
+    - [action_mailbox_incineration, 7]
+    - [active_storage_analysis, 8]
+    - [active_storage_purge, 9]
+    - [low, 10]
