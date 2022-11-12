@@ -28,7 +28,11 @@
                 <div class="mb-4 ">
                    <%= form.text_area :plot, placeholder: "Plot",  class:"form-control  bg-light border "%>
                 </div>
-              </div>
+                <div class="mb-4 ">
+                  <%= form.label :tag_list, "Tags (separated by commas)" %>
+                  <%= form.text_field :tag_list, placeholder:"Action, Drama..", class:"form-control  bg-light  border"%>
+                </div>
+               </div>
               <%= form.submit class:"btn btn-dark mt-5",value: "Save Movie" %>
             </div>
           </div>
