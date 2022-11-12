@@ -29,6 +29,9 @@ gem "cssbundling-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+gem "faraday", "~> 2.4"
+gem "nokogiri", "~> 1.13"
+gem "sidekiq", "~> 7.0"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
@@ -77,3 +80,6 @@ group :test do
 end
 
 gem 'jquery-rails'
+
+
+
