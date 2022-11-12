@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!
+  
   # GET /movies or /movies.json
   def index
     @movies = Movie.all
@@ -57,6 +58,8 @@ class MoviesController < ApplicationController
     end
   end
 
+  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_movie
@@ -67,4 +70,5 @@ class MoviesController < ApplicationController
     def movie_params
       params.require(:movie).permit(:poster, :title, :plot, :rating, :year, :poster)
     end
+
 end
