@@ -1,12 +1,12 @@
-@import'../../../node_modules/bootstrap/scss/bootstrap';
-@import '../../../node_modules/bootstrap-icons/font/bootstrap-icons';
+@import'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons';
 html {
     height: 100%;
 }
 
 body {
     min-height: 100%;
-    background-image: linear-gradient(rgb(112, 163, 230) ,rgb(65, 32, 182));
+    background-color: black;
 }
 
 
