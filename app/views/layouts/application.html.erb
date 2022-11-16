@@ -10,11 +10,8 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
  
+ <body>
     <%= render "layouts/navbar" if user_signed_in? %>
-   
-
-  <body>
-   
     <p class="notice text-white"><%= notice %></p>
     <p class="alert text-white"><%= alert %></p>
     <%= yield %>

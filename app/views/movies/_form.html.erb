@@ -1,6 +1,6 @@
-<%= form_with(model: movie) do |form| %>
+<%= form_with(model: movie) do |form|%>
   
-  <div class="container py-5 h-100">
+  <div class="container py-5 h-100 ">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
        <div class="card-body p-5 text-center">
@@ -12,23 +12,38 @@
                   <%= error.full_message %>
                 <% end %>
               <% end %>
-              <div class="mb-4 mt-4">
-                <%= form.file_field :poster, class:"form-control bg-light border", placeholder: "Image" %>
+              <div class="mb-4 mt-4 bg-light">
+                <%= form.file_field :poster, class:'form-control bg-light border', placeholder: 'Image', required: true %>
               </div>
-              <div class="mb-4">
-                <%= form.text_field :title, class:"form-control bg-light border", placeholder: "Movie Title", required: true%>
+              <div class="form-floating mb-4 text-dark">
+                <%= form.text_field :title, class:'form-control bg-light border',required: true, placeholder: 'Movie Title'%>
+                <%= form.label :title, 'Movie Title'%>
               </div>
               <div class="row ">
-                <div class="col-md-6 mb-4">
-                  <%= form.text_field :rating, class:"form-control  bg-light  border", placeholder: "IMDB rating" %>
+                <div class="form-floating col-md-6 mb-4 text-dark">
+                  <%= form.text_field :rating, class:'form-control  bg-light  border', placeholder: 'IMDB rating'%>
+                  <%= form.label :rating, 'IMDB rating'%>
                 </div>
-                <div class="col-md-6 mb-4 ">
-                  <%= form.number_field :year, class:"form-control  bg-light border", placeholder: "Year" %>
+                <div class="form-floating col-md-6 mb-4 text-dark">
+                  <%= form.number_field :year, class:'form-control  bg-light border', placeholder: 'Year'%>
+                  <%= form.label :year, 'Year'%>
                 </div>
-                <div class="mb-4 ">
-                   <%= form.text_area :plot, placeholder: "Plot",  class:"form-control  bg-light border "%>
+                <div class="form-floating mb-4 text-dark">
+                   <%= form.text_area :plot,  class:'form-control  bg-light border', placeholder:'Plot'%>
+                   <%= form.label :plot, 'Plot' %>
                 </div>
-              </div>
+                <%= form.label :category_ids, 'Choose the most suitable categories', class: 'mb-4'%>
+                <%= form.collection_check_boxes :category_ids, Category.all,:id, :name do |b| %>
+                  <div class="collection-check-box">
+                    <%= b.check_box %>
+                    <%= b.label %>
+                  </div>
+                <%end%>
+                <div class="form-floating mb-4 mt-4 text-dark">
+                  <%= form.text_field :tag_list, placeholder:"Action, Drama..", class:"form-control  bg-light  border"%>
+                  <%= form.label :tag_list, 'Tags (separated by commas)'%>
+                </div>
+               </div>
               <%= form.submit class:"btn btn-dark mt-5",value: "Save Movie" %>
             </div>
           </div>

@@ -10,12 +10,12 @@
       <br>
       <br> 
       
-      <% movie.categories[0...-1].each do |category| %>
-        <p class="d-inline  fw-lighter text-white"><%= category.name %> | </p>
-       
+      <% movie.categories.each do |category| %>
+        <p class="d-inline  fw-lighter text-white"><%= category.name %></p>
+        <% if category != movie.categories.last %>
+          <p class="d-inline  fw-lighter text-white">|</p>
+        <% end %>
       <%end%>
-      
-      <p class="d-inline  fw-lighter text-white"><%= movie.categories.last.name %></p>
 
       
       

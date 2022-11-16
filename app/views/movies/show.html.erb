@@ -13,12 +13,12 @@
         <p class="p-2 fw-lighter text-white"><%= image_tag 'imdb.png', class:"logo" %><%= @movie.rating%>
 
         <p class="d-inline p-2 fw-lighter text-white">Category: </p>
-        <% @movie.categories[0...-1].each do |category| %>
-          <p class="d-inline fw-lighter text-white"><%= category.name %> | </p>
-         
+        <% @movie.categories.each do |category| %>
+          <p class="d-inline  fw-lighter text-white"><%= category.name %></p>
+          <% if category != @movie.categories.last %>
+            <p class="d-inline  fw-lighter text-white">|</p>
+          <% end %>
         <%end%>
-        
-        <p class="d-inline fw-lighter text-white"><%= @movie.categories.last.name %></p>
 
         <p class="p-2 fw-lighter text-white mt-5">Plot: <br> <%= @movie.plot %></p>
  
