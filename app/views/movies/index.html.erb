@@ -1,18 +1,16 @@
-
-
-
-
 <div class="container ">
-  <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-light" type="submit">Search</button>
-  </form>
+  <%= search_form_for @q do |f| %>
+    <div class="input-group">
+      <%= f.text_field :title_cont, class: "form-control ", placeholder: "Insert title" %>
+      <%= f.submit class: "btn btn-outline-light " %>
+    </div>
+  <%end%>
   <div class="row mt-5">
     <% @movies.each do |movie| %>
       
       <%= render movie %>
       <p>
-        <%= link_to "Show this movie", movie, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline" %>
+        <%= link_to "Show this movie", movie, class: "btn btn-outline-light  border rounded-pill mt-4 btn-outline" %>
       </p>
       </div>
     <% end %>
