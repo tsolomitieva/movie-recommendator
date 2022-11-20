@@ -12,10 +12,13 @@
  
  <body>
     <%= render "layouts/navbar" if user_signed_in? %>
-    <p class="notice text-white"><%= notice %></p>
-    <p class="alert text-white"><%= alert %></p>
+    <% if notice.present? %>
+      <p class="alert alert-info"><%= notice %></p>
+    <% end %>
+    <% if alert.present? %>
+      <p class="alert alert-warning"><i class="bi bi-exclamation-circle-fill"></i><%= alert %></p>
+    <% end %>
+
     <%= yield %>
-
   </body>
-
 </html>
