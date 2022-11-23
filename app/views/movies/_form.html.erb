@@ -13,23 +13,23 @@
                 <% end %>
               <% end %>
               <div class="mb-4 mt-4 bg-light">
-                <%= form.file_field :poster, class:'form-control bg-light border', placeholder: 'Image', required: true %>
+                <%= form.file_field :poster, class: 'form-control bg-light border', placeholder: 'Image', required: true %>
               </div>
               <div class="form-floating mb-4 text-dark">
-                <%= form.text_field :title, class:'form-control bg-light border',required: true, placeholder: 'Movie Title'%>
+                <%= form.text_field :title, class: 'form-control bg-light border',required: true, placeholder: 'Movie Title'%>
                 <%= form.label :title, 'Movie Title'%>
               </div>
               <div class="row ">
                 <div class="form-floating col-md-6 mb-4 text-dark">
-                  <%= form.text_field :rating, class:'form-control  bg-light  border', placeholder: 'IMDB rating'%>
+                  <%= form.text_field :rating, class: 'form-control  bg-light  border', placeholder: 'IMDB rating'%>
                   <%= form.label :rating, 'IMDB rating'%>
                 </div>
                 <div class="form-floating col-md-6 mb-4 text-dark">
-                  <%= form.number_field :year, class:'form-control  bg-light border', placeholder: 'Year'%>
+                  <%= form.number_field :year, class: 'form-control  bg-light border', placeholder: 'Year'%>
                   <%= form.label :year, 'Year'%>
                 </div>
                 <div class="form-floating mb-4 text-dark">
-                   <%= form.text_area :plot,  class:'form-control  bg-light border', placeholder:'Plot'%>
+                   <%= form.text_area :plot,  class: 'form-control  bg-light border', placeholder: 'Plot'%>
                    <%= form.label :plot, 'Plot' %>
                 </div>
                 <%= form.label :category_ids, 'Choose the most suitable categories', class: 'mb-4'%>
@@ -40,16 +40,16 @@
                   </div>
                 <%end%>
                 <div class="form-floating mb-4 mt-4 text-dark">
-                  <%= form.text_field :tag_list, placeholder:"Action, Drama..", class:"form-control  bg-light  border"%>
+                  <%= form.text_field :tag_list, placeholder:"Action, Drama..", class: 'form-control  bg-light  border'%>
                   <%= form.label :tag_list, 'Tags (separated by commas)'%>
                 </div>
                </div>
-              <%= form.submit class:"btn btn-dark mt-5",value: "Save Movie" %>
+              <%= form.submit class: "btn btn-dark mt-5", value: "Save Movie" %>
             </div>
           </div>
         </div>
       <div>
-    <%= link_to "Back to movies", movies_path, class:" mt-2 text-muted" %>
+    <%= link_to "Back to movies", movies_path, class: "mt-2 text-muted" %>
     </div>
   </div>
   
