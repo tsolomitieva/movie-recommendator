@@ -5,8 +5,8 @@ class MoviesController < ApplicationController
   # GET /movies or /movies.json
   def index
 
-    @q = Movie.ransack(params[:q])
-    @movies = @q.result(distinct: true).includes(:categories).page params[:page]
+    @q = Movie.includes(:categories, poster_attachment: :blob).ransack(params[:q])
+    @movies = @q.result(distinct: true).page params[:page]
 
   end
 

@@ -8,5 +8,4 @@ class Movie < ApplicationRecord
 
     acts_as_taggable_on :tags
 
-    paginates_per 3
 end
