@@ -9,10 +9,9 @@
     <% @movies.each do |movie| %>
       
       <%= render movie %>
-      <p>
-        <%= link_to "Show this movie", movie, class: "btn btn-outline-light  border rounded-pill mt-4 btn-outline" %>
-      </p>
-      </div>
+
+
+
     <% end %>
     
   </div>
@@ -20,4 +19,3 @@
     <%= paginate @movies %>
   <div>
   </div>
-

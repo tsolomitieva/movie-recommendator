@@ -1,9 +1,9 @@
 
 
     <div class="col-md-4 text-center">
-      <% if movie.poster.present? %>
-        <%= image_tag(movie.poster, class:"poster mt-5") %>
-      <% end %>
+
+      <%= image_tag(movie.poster, class:"poster mt-5") if movie.poster.attached? %>
+
       
       <p class="text-white mt-4 fw-light fs-4 mb-2"><%= movie.title %></p>
       
@@ -19,8 +19,7 @@
         <% end %>
       <%end%>
 
-      
-      
-      
-
-
+      <p>
+        <%= link_to "Show this movie", movie, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline" %>
+      </p>
+    </div>
