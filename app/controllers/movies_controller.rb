@@ -4,8 +4,10 @@ class MoviesController < ApplicationController
   
   # GET /movies or /movies.json
   def index
+
     @q = Movie.ransack(params[:q])
     @movies = @q.result(distinct: true).includes(:categories).page params[:page]
+
   end
 
   # GET /movies/1 or /movies/1.json
