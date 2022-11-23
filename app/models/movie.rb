@@ -7,5 +7,4 @@ class Movie < ApplicationRecord
     has_many :categories, through: :categories_movies
 
     acts_as_taggable_on :tags
-
 end
