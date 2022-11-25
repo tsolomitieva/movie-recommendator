@@ -1,12 +1,12 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
-  
+ 
   # GET /movies or /movies.json
   def index
 
-    @q = Movie.ransack(params[:q])
-    @movies = @q.result(distinct: true).includes(:categories).page params[:page]
+    @q = Movie.includes(:categories, poster_attachment: :blob).ransack(params[:q])
+    @movies = @q.result(distinct: true).page params[:page]
 
   end
 
@@ -26,7 +26,6 @@ class MoviesController < ApplicationController
   # POST /movies or /movies.json
   def create
     @movie = Movie.new(movie_params)
-    
     respond_to do |format|
       if @movie.save
         format.html { redirect_to movie_url(@movie), notice: "Movie was successfully created." }
