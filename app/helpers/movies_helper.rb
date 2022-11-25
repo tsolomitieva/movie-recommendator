@@ -1,9 +1,9 @@
 module MoviesHelper
-    def set_default_poster(movie)
-        if movie.poster.nil? || movie.poster.blank?
-            return 'default.jpg'
-        else
+    def poster_for_movie(movie)
+        if movie.poster.attached?
             return movie.poster
+        else
+            return 'default.jpg'
         end
     end
 end

@@ -4,8 +4,8 @@
 
 <div class="row justify-content-end">
    <div class="col-md-4 ms-auto">
-   <%= image_tag(set_default_poster(@movie),class:"large-poster")%>
-  </div>
+   <%= image_tag(poster_for_movie(@movie),class:"large-poster")%>
+   </div>
 
     <div class="col-md-6 ">
         <p class="text-white mt-4 fw-light fs-4 mb-4">Title: <%= @movie.title %></p>
