@@ -1,15 +1,6 @@
-class Admin::MoviesController < ApplicationController
+class Admin::MoviesController < AdminController
+    before_action :set_movie, only: [:show, :edit]
  
-   def index
-
-        @q = Movie.includes(:categories, poster_attachment: :blob).ransack(params[:q])
-        @movies = @q.result(distinct: true).page params[:page]
-
-    end
-
-    def show
-    end
-
     def edit
     end
 

@@ -1,4 +1,10 @@
 <div class="container ">
+  <% if current_user = 'admin' %>
+    <div class="d-flex justify-content-center">
+      <%= link_to "Add movie", new_admin_movie_path(), class:"btn btn-info m-4" %>
+      <%= link_to "Add category", new_admin_category_path(), class:"btn btn-warning m-4" %>
+    </div>
+  <% end %>
   <%= search_form_for @q do |f| %>
     <div class="input-group">
       <%= f.text_field :title_or_categories_name_cont, class: "form-control ", placeholder: "Insert title" %>

@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: %i[ show ]
   before_action :authenticate_user!
+  before_action :set_movie, only: %i[ show ]
+  
  
   # GET /movies or /movies.json
   def index
