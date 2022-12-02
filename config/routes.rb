@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   root "movies#index"
 
   namespace :admin do 
-    resources :users
+    resources :users do
+      collection do
+        post :ban_account
+      end
+    end
     resources :movies
     resources :categories
   end

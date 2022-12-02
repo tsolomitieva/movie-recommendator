@@ -16,7 +16,7 @@
         <td><%= user.email %></td>
         <td><%= user.role %></td>
         <td>false</td>
-        <td><%= button_to "Ban this account" %></td>
+        <td><%= link_to "Ban this account", ban_account_admin_users_path(user),method: :post, class:"btn btn-primary" %></td>
         <td><%= button_to "Delete this account" %></td>
       </tr>
     <% end %>
