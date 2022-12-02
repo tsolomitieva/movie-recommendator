@@ -9,9 +9,7 @@ Rails.application.routes.draw do
 
   namespace :admin do 
     resources :users do
-      collection do
-        post :ban_account
-      end
+      post :ban_account, on: :member
     end
     resources :movies
     resources :categories
