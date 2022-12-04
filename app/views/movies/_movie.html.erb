@@ -19,6 +19,7 @@
       <%end%>
 
       <p>
+        <%= button_to "Add to List", add_to_list_users_movie_path(movie), method: :post, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline" %>
         <%= link_to "Show this movie", movie_path(movie), class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline" %>
       </p>
     </div>

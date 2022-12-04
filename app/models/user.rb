@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :users_movies
+  has_many :movies, through: :users_movies
   
   enum role: { user: 0, admin: 1 }
   
