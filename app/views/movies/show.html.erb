@@ -21,10 +21,12 @@
         <%end%>
 
         <p class="p-2 fw-lighter text-white mt-5">Plot: <br> <%= @movie.plot %></p>
- 
-     <div class="mt-5">
-      <%= link_to "Edit", edit_movie_path(@movie), class:"btn btn-primary " %>
-      <%= button_to "Delete", @movie, method: :delete , class:"btn btn-danger mt-2" %></div>
+        <% if current_user.admin?%>
+            <div class="mt-5">
+              <%= link_to "Edit", edit_admin_movie_path(@movie), class:"btn btn-primary " %>
+              <%= button_to "Delete", @movie, method: :delete , class:"btn btn-danger mt-2" %>
+            </div>
+        <% end %>
     </div> 
      
         

@@ -6,4 +6,13 @@ Rails.application.routes.draw do
   resources :movies
   resources :categories
   root "movies#index"
+
+  namespace :admin do 
+    resources :users do
+      post :ban_account, on: :member
+    end
+    resources :movies
+    resources :categories
+  end
+
 end
