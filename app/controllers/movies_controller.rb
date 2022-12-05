@@ -54,7 +54,7 @@ class MoviesController < ApplicationController
   def add_to_list
       @users_movie = UsersMovie.new(user_id: current_user.id, movie_id: @movie.id)
       if @users_movie.save
-        redirect_to movies_path, notice: "Movie was added to your list." 
+        redirect_to movies_path 
       else
          render :new, status: :unprocessable_entity 
       end
@@ -65,7 +65,7 @@ class MoviesController < ApplicationController
     #@users_movie = UsersMovie.find_by(user_id: current_user.id, movie_id: @movie.id).destroy
     @users_movie = current_user.users_movies.find_by(movie_id: @movie.id)
     if @users_movie.destroy
-      redirect_to movies_path, notice: "Movie was deleted from your list." 
+      redirect_to movies_path
     else
       render :new, status: :unprocessable_entity 
     end

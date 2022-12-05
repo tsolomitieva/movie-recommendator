@@ -1,29 +1,30 @@
 
+<div class="col-md-4 text-center">
+  <%= turbo_frame_tag movie do %>
 
-    <div class="col-md-4 text-center">
-
-      <%= image_tag(poster_for_movie(movie),class:"poster mt-5")%>
-      
-      <p class="text-white mt-4 fw-light fs-4 mb-2"><%= movie.title %></p>
-      
-      <div class="d-inline p-2 fw-lighter text-white"><%= movie.year %></div>
-      <div class="d-inline p-2 fw-lighter text-white"><%= image_tag 'imdb.png', class:"logo" %><%= movie.rating%></div> 
-      <br>
-      <br> 
-      
-      <% movie.categories.each do |category| %>
-        <p class="d-inline  fw-lighter text-white"><%= category.name %></p>
-        <% if category != movie.categories.last %>
-          <p class="d-inline  fw-lighter text-white">|</p>
-        <% end %>
+    <%= image_tag(poster_for_movie(movie),class:"poster mt-5")%>
+    
+    <p class="text-white mt-4 fw-light fs-4 mb-2"><%= movie.title %></p>
+    
+    <div class="d-inline p-2 fw-lighter text-white"><%= movie.year %></div>
+    <div class="d-inline p-2 fw-lighter text-white"><%= image_tag 'imdb.png', class:"logo" %><%= movie.rating%></div> 
+    <br>
+    <br> 
+    
+    <% movie.categories.each do |category| %>
+      <p class="d-inline  fw-lighter text-white"><%= category.name %></p>
+      <% if category != movie.categories.last %>
+        <p class="d-inline  fw-lighter text-white">|</p>
+      <% end %>
+    <%end%>
+    
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <% if current_user.movies.include?(movie)%>
+        <%= button_to "", remove_from_list_movie_path(movie), method: :delete, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline bi bi-x-lg m-2"%>
+      <%else%>
+        <%= button_to "", add_to_list_movie_path(movie), method: :post, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline bi bi-plus m-2" %>
       <%end%>
-
-      <p>
-        <% if current_user.movies.include?(movie)%>
-          <%= button_to "", remove_from_list_movie_path(movie), method: :delete, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline bi bi-x-lg" %>
-        <%else%>
-          <%= button_to "", add_to_list_movie_path(movie), method: :post, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline bi bi-plus" %>
-        <%end%>
-        <%= link_to "Show this movie", movie_path(movie), class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline" %>
-      </p>
+      <%= link_to "More", movie_path(movie), class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline m-2" %>
     </div>
+  <% end %>
+</div>
