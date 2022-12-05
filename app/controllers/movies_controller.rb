@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_movie, only: %i[:show, :edit ]
+  before_action :set_movie, only: %i[show edit]
   
  
   # GET /movies or /movies.json
@@ -51,7 +51,29 @@ class MoviesController < ApplicationController
   end
 
     
- 
+  def add_to_list
+      @users_movie = UsersMovie.new(user_id: current_user.id, movie_id: params[:movie_id])
+      respond_to do |format|
+        if @users_movie.save
+            format.html { redirect_to movies_url(), notice: "Movie was added to your list." }
+        else
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: @users_movie.errors, status: :unprocessable_entity }
+        end
+      end
+  end
+
+  def remove_from_list
+    @users_movie = UsersMovie.find_by(user_id: current_user.id, movie_id: params[:movie_id]).destroy
+    respond_to do |format|
+        if @users_movie.destroy
+            format.html { redirect_to movies_url(), notice: "Movie was deleted from your list." }
+        else
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: @users_movie.errors, status: :unprocessable_entity }
+        end
+      end
+  end
 
   private
 
