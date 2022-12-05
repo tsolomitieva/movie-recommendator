@@ -6,10 +6,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :movies
   resources :categories
-  resources :users_movies do
-    post  :add_to_list, on: :member
-  end
-
+  resources :users_movies 
+ 
   namespace :admin do 
     resources :users do
       post :ban_account, on: :member
