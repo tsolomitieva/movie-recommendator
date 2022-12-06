@@ -2,11 +2,15 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   mount Sidekiq::Web, at: "sidekiq"
-  devise_for :users
-  resources :movies
-  resources :categories
   root "movies#index"
-
+  devise_for :users
+  resources :movies do
+    post :add_to_list, on: :member
+    delete :remove_from_list, on: :member
+  end
+  resources :categories
+  
+ 
   namespace :admin do 
     resources :users do
       post :ban_account, on: :member

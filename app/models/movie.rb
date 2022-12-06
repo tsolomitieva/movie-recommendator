@@ -5,6 +5,8 @@ class Movie < ApplicationRecord
     has_one_attached :poster
     has_many :categories_movies
     has_many :categories, through: :categories_movies
+    has_many :users_movies
+    has_many :users, through: :users_movies
 
     acts_as_taggable_on :tags
 end
