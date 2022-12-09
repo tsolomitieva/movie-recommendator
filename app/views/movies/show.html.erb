@@ -24,7 +24,7 @@
         <% if current_user.admin?%>
             <div class="mt-5">
               <%= link_to "Edit", edit_admin_movie_path(@movie), class:"btn btn-primary " %>
-              <%= button_to "Delete", @movie, method: :delete , class:"btn btn-danger mt-2" %>
+             <%= button_to "Delete", admin_movie_path(:id => @movie.id), :method => :delete, class:"mt-2 btn btn-danger " %>
             </div>
         <% end %>
     </div> 

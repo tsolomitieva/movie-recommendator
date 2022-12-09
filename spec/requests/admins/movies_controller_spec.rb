@@ -33,5 +33,18 @@ RSpec.describe "MoviesController", type: :request do
       expect(response).to have_http_status(302)
     end
   end
-   
+   describe "POST#create" do
+     it 'returns a successful response' do
+       sign_in admin
+       expect { post admin_movies_path, params: { movie: { title: "test" }}}
+       .to change(Movie, :count).by(1)
+     end
+   end 
+   describe "POST#create" do
+     it 'redirects to authentication' do
+       sign_in user
+       expect { post admin_movies_path, params: { movie: { title: "test" }}}
+       .to change(Movie, :count).by(0)
+      end
+   end 
 end
