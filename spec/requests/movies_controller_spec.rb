@@ -14,7 +14,7 @@ RSpec.describe "MoviesController", type: :request do
   describe "GET#index" do
     it 'redirects to authentication' do
       get movies_path
-      expect(response).to have_http_status(302)
+      expect(response).to redirect_to(new_user_session_path)
     end
   end
   describe "GET#show" do
@@ -27,7 +27,7 @@ RSpec.describe "MoviesController", type: :request do
   describe "GET#show" do
     it 'redirects to authentication' do
       get movie_path(movie)
-      expect(response).to have_http_status(302)
+      expect(response).to redirect_to(new_user_session_path)
     end
   end
   

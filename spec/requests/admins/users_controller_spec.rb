@@ -10,7 +10,7 @@ RSpec.describe "MoviesController", type: :request do
   describe "GET#index" do
     it 'renders a successful response' do
       get admin_users_path
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end 
   

@@ -6,3 +6,4 @@ RSpec.describe Movie, type: :model do
     expect(movie).to_not be_valid
   end
 end
+
