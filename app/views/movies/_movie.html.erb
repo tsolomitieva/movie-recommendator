@@ -18,10 +18,26 @@
     <%end%>
     
     <div class="btn-group" role="group" aria-label="Basic example">
-      <% if current_user.movies.include?(movie)%>
-        <%= button_to "", remove_from_list_movie_path(movie), method: :delete, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline bi bi-x-lg m-2"%>
+      <!-- if movie is in user's list -->
+      <% if current_user.users_movies.exists?(movie_id: movie.id, status: 0)%>
+        <%= button_to "", delete_movie_status_movie_path(movie), method: :delete, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline bi bi-x-lg m-2"%>
+         <%= button_to "", add_movie_status_movie_path(movie, status: 'like'), method: :post, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline bi bi-hand-thumbs-up m-2"%>
+        <%= button_to "", add_movie_status_movie_path(movie, status: 'dislike') , method: :post, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline bi bi-hand-thumbs-down m-2"%>
+     
+      <!-- if user likes the movie -->
+      <% elsif current_user.users_movies.exists?(movie_id: movie.id, status: 1)%>
+      <%= button_to "", add_movie_status_movie_path(movie, status: 'want_to_see'), method: :post, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline bi bi-plus m-2"%>
+        <%= button_to "", delete_movie_status_movie_path(movie), method: :delete, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline bi bi-hand-thumbs-up-fill m-2"%>
+        <%= button_to "", add_movie_status_movie_path(movie, status: 'dislike'), method: :post, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline bi bi-hand-thumbs-down m-2"%>
+      <!-- if user dilikes the movie -->
+      <% elsif current_user.users_movies.exists?(movie_id: movie.id, status: 2)%>
+      <%= button_to "", add_movie_status_movie_path(movie, status: 'want_to_see'), method: :post, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline bi bi-plus m-2"%>
+        <%= button_to "", add_movie_status_movie_path(movie, status: 'like'), method: :post, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline bi bi-hand-thumbs-up m-2"%>
+        <%= button_to "", delete_movie_status_movie_path(movie), method: :delete, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline bi bi-hand-thumbs-down-fill m-2"%>
       <%else%>
-        <%= button_to "", add_to_list_movie_path(movie), method: :post, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline bi bi-plus m-2" %>
+      <%= button_to "", add_movie_status_movie_path(movie, status: 'want_to_see'), method: :post, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline bi bi-plus m-2"%>
+        <%= button_to "", add_movie_status_movie_path(movie, status: 'like'), method: :post, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline bi bi-hand-thumbs-up m-2"%>
+        <%= button_to "", add_movie_status_movie_path(movie, status: 'dislike') , method: :post, class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline bi bi-hand-thumbs-down m-2"%>
       <%end%>
       <%= link_to "More", movie_path(movie), class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline m-2" %>
     </div>

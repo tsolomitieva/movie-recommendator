@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   root "movies#index"
   devise_for :users
   resources :movies, only: [:index, :show] do
-    post :add_to_list, on: :member
-    delete :remove_from_list, on: :member
+    post :add_movie_status, on: :member
+    delete :delete_movie_status, on: :member
   end
   resources :categories
   

@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_movie, only: %i[show edit add_to_list remove_from_list]
+  before_action :set_movie, only: %i[show edit add_movie_status delete_movie_status]
   
  
   # GET /movies or /movies.json
@@ -14,27 +14,36 @@ class MoviesController < ApplicationController
   # GET /movies/1 or /movies/1.json
   def show
   end
-  
-   
-  def add_to_list
-      @users_movie = UsersMovie.new(user_id: current_user.id, movie_id: @movie.id)
-      if @users_movie.save
-        render @movie
-      else
-         render :new, status: :unprocessable_entity 
-      end
-      
+
+  #adding like, dislike, want to see
+  def add_movie_status
+    #if record exists change status
+    if UsersMovie.exists?(user_id: current_user.id, movie_id: @movie.id)
+    @users_movie = UsersMovie.where(user_id: current_user.id, movie_id: @movie.id)
+    if @users_movie.update(status: params[:status])
+      render @movie
+    else
+        render :new, status: :unprocessable_entity 
+    end
+    else
+      #add movie with status to usersmovies
+      @users_movie = UsersMovie.new(user_id: current_user.id, movie_id: @movie.id, status: params[:status])
+        if @users_movie.save
+          render @movie
+        else
+          render :new, status: :unprocessable_entity 
+        end
+    end
   end
 
-  def remove_from_list
-    #@users_movie = UsersMovie.find_by(user_id: current_user.id, movie_id: @movie.id).destroy
-    @users_movie = current_user.users_movies.find_by(movie_id: @movie.id)
+  #removing like, dislike, want to see by pressing button again
+  def delete_movie_status
+  @users_movie=current_user.users_movies.find_by(movie_id: @movie.id)
     if @users_movie.destroy
       render @movie
     else
       render :new, status: :unprocessable_entity 
     end
-    
   end
 
   private
