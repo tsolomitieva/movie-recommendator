@@ -1,6 +1,6 @@
 class Admin::UsersController < AdminController
     before_action :authenticate_user!
-    before_action :check_admin 
+   
     
     def index
         @users = User.all

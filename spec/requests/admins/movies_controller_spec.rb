@@ -44,6 +44,7 @@ RSpec.describe "MoviesController", type: :request do
        sign_in admin
        expect { post admin_movies_path, params: { movie: movie.attributes }}
        .to change(Movie, :count).by(0)
+
      end
    end 
    
