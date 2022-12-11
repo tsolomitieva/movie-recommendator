@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   mount Sidekiq::Web, at: "sidekiq"
   root "movies#index"
   devise_for :users
-  resources :movies do
+  resources :movies, only: [:index, :show] do
     post :add_to_list, on: :member
     delete :remove_from_list, on: :member
   end
