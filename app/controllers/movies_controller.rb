@@ -6,9 +6,10 @@ class MoviesController < ApplicationController
   # GET /movies or /movies.json
   def index
 
-    @q = Movie.includes(:categories, poster_attachment: :blob).ransack(params[:q])
+    @q = Movie.includes(:categories, :users_movies,  poster_attachment: :blob).ransack(params[:q])
     @movies = @q.result(distinct: true).page params[:page]
-
+   
+    
   end
 
   # GET /movies/1 or /movies/1.json
@@ -17,9 +18,9 @@ class MoviesController < ApplicationController
 
   #adding like, dislike, want to see
   def add_movie_status
+    @users_movie = UsersMovie.find_by(user_id: current_user.id, movie_id: @movie.id)
     #if record exists change status
-    if UsersMovie.exists?(user_id: current_user.id, movie_id: @movie.id)
-    @users_movie = UsersMovie.where(user_id: current_user.id, movie_id: @movie.id)
+    if @users_movie.present?
     if @users_movie.update(status: params[:status])
       render @movie
     else
