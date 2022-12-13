@@ -5,7 +5,7 @@ class UsersController < ApplicationController
    def movie_list
     #get movies with want_to_see status from the given list url 
     @user = User.find_by(list: params[:url])
-    @want_to_see_movies = Movie.joins(:users_movies).where(users_movies: {status: 0}, users_movies:{user: @user})
+    @want_to_see_movies = Movie.joins(:users_movies).where(users_movies: {status: 0, user: @user} )
     @movies = @want_to_see_movies.includes(:categories, :users_movies,  poster_attachment: :blob).page params[:page]
     
     
