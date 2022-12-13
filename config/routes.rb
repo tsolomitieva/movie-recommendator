@@ -9,7 +9,10 @@ Rails.application.routes.draw do
     delete :delete_movie_status, on: :member
   end
   resources :categories
-  
+
+  resources :users do
+    get 'movie_list/:url', to: 'users#movie_list', on: :member
+  end
  
   namespace :admin do 
     resources :users do
