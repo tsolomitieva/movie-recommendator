@@ -1,18 +1,37 @@
 <div class="container ">
   
   <div class="mt-4 d-flex justify-content-center">
-  <h2 class="text-white mb-2">Movies <%=link_to @user.email%> want's to see</h2>
-   <%= paginate @movies %>
+    <h2 class="text-white mb-2">Movies <%=link_to @user.email%> want's to see</h2>
   </div>
   <div class="row mt-5">
     <% @movies.each do |movie| %>
-      
+      <% if movie.users_movies.first.status == 'want_to_see'%>
       <%= render movie %>
-      
       <% end %>
-    
+    <% end %>
   </div>
-  <div class="d-flex justify-content-center">
-    <%= paginate @movies %>
-  <div>
+
+  <div class="mt-4 d-flex justify-content-center">
+    <h2 class="text-white mb-2">Movies <%=link_to @user.email%> liked</h2>
+  </div>
+  
+  <div class="row mt-5">
+    <% @movies.each do |movie| %>
+      <% if movie.users_movies.first.status == 'like' %>
+      <%= render movie %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="mt-4 d-flex justify-content-center">
+    <h2 class="text-white mb-2">Movies <%=link_to @user.email%> disliked</h2>
+  </div>
+  
+  <div class="row mt-5">
+    <% @movies.each do |movie| %>
+      <% if movie.users_movies.first.status == 'dislike' %>
+      <%= render movie %>
+      <% end %>
+    <% end %>
+  </div>
+  
   </div>

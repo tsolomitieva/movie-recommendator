@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :categories
 
   resources :users do
-    get 'movie_list/:url', to: 'users#movie_list', on: :member
+    get 'movie_list/:public_list_uid', to: 'users#movie_list', on: :member
   end
  
   namespace :admin do 

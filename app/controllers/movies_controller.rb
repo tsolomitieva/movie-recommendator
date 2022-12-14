@@ -18,22 +18,12 @@ class MoviesController < ApplicationController
 
   #adding like, dislike, want to see
   def add_movie_status
-    @users_movie = UsersMovie.find_by(user_id: current_user.id, movie_id: @movie.id)
-    #if record exists change status
-    if @users_movie.present?
-    if @users_movie.update(status: params[:status])
-      render @movie
+    @movie_list = UsersMovie.where(user: current_user, movie: @movie).first_or_initialize
+    @movie_list.status = params[:status]
+    if @movie_list.save
+      render @movie 
     else
-        render :new, status: :unprocessable_entity 
-    end
-    else
-      #add movie with status to usersmovies
-      @users_movie = UsersMovie.new(user_id: current_user.id, movie_id: @movie.id, status: params[:status])
-        if @users_movie.save
-          render @movie
-        else
-          render :new, status: :unprocessable_entity 
-        end
+      render :new, status: :unprocessable_entity
     end
   end
 

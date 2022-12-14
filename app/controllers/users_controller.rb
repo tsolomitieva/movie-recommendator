@@ -1,14 +1,17 @@
 class UsersController < ApplicationController
+
    before_action :authenticate_user!
    before_action :set_user, only: %i[movie_list]
    
    def movie_list
-    #get movies with want_to_see status from the given list url 
-    @user = User.find_by(list: params[:url])
-    @want_to_see_movies = Movie.joins(:users_movies).where(users_movies: {status: 0, user: @user} )
-    @movies = @want_to_see_movies.includes(:categories, :users_movies,  poster_attachment: :blob).page params[:page]
-    
-    
+        @user = User.find_by(public_list_uid: params[:public_list_uid])
+    if @user
+        #get movies with want_to_see status from the given list url 
+        @movies_list = Movie.joins(:users_movies).where(users_movies: {user: @user} )
+        @movies = @movies_list.includes(:categories, :users_movies,  poster_attachment: :blob).page params[:page]
+    else
+        redirect_to movies_path, notice: "User wasn't found"
+    end
    end
    
 
@@ -19,7 +22,7 @@ class UsersController < ApplicationController
     end
 
       
-    def movie_params
-        params.require(:user).permit(:email, :password, :list)
+    def user_params
+        params.require(:user).permit(:email, :password, :public_list_uid)
     end
 end
