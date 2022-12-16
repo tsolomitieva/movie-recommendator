@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_04_125828) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_14_125453) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -116,6 +116,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_04_125828) do
     t.datetime "updated_at", null: false
     t.integer "role", default: 0
     t.boolean "ban", default: false
+    t.string "public_list_uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -125,6 +126,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_04_125828) do
     t.integer "movie_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status"
     t.index ["user_id", "movie_id"], name: "index_users_movies_on_user_id_and_movie_id", unique: true
   end
 

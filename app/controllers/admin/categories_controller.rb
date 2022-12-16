@@ -1,6 +1,6 @@
 class Admin::CategoriesController < AdminController
   before_action :authenticate_user!
-  before_action :check_admin 
+  
     
   def new
     @category = Category.new
