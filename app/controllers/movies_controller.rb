@@ -27,26 +27,25 @@ class MoviesController < ApplicationController
     end
   end
 
-  #removing like, dislike, want to see by pressing button again
+  # removing like, dislike, want to see by pressing button again
   def delete_movie_status
-  @users_movie=current_user.users_movies.find_by(movie_id: @movie.id)
-    if @users_movie.destroy
-      render @movie
-    else
-      render :new, status: :unprocessable_entity 
-    end
+    @users_movie = current_user.users_movies.find_by(movie_id: @movie.id)
+      if @users_movie.destroy
+        render @movie
+      else
+        render :new, status: :unprocessable_entity 
+      end
   end
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
+  # Use callbacks to share common setup or constraints between actions.
   def set_movie
     @movie = Movie.find(params[:id])
   end
 
-    # Only allow a list of trusted parameters through.
+  # Only allow a list of trusted parameters through.
   def movie_params
     params.require(:movie).permit(:poster, :title, :plot, :rating, :year, :poster, :tag_list, category_ids:[])
   end
-  
 end

@@ -1,7 +1,6 @@
 class Admin::CategoriesController < AdminController
   before_action :authenticate_user!
-  
-    
+
   def new
     @category = Category.new
   end
@@ -20,10 +19,9 @@ class Admin::CategoriesController < AdminController
     end
   end
 
-  def edit
+  def edit 
   end
 
- 
   def update
     respond_to do |format|
       if @category.update(movie_params)
@@ -44,7 +42,7 @@ class Admin::CategoriesController < AdminController
       format.json { head :no_content }
     end
   end
-  
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -52,10 +50,8 @@ class Admin::CategoriesController < AdminController
     @category = Category.find(params[:id])
   end
 
-   # Only allow a list of trusted parameters through.
+  # Only allow a list of trusted parameters through.
   def category_params
     params.require(:category).permit(:name)
   end
-
-  
 end
