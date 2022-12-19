@@ -13,7 +13,7 @@ class Admin::MoviesController < AdminController
     @movie = Movie.new(movie_params)
       respond_to do |format|
         if @movie.save
-          format.html { redirect_to movie_url(@movie), notice: 'Movie was successfully created.'}
+          format.html { redirect_to movie_url(@movie), notice: 'Movie was successfully created.' }
           format.json { render :show, status: :created, location: @movie }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -55,4 +55,3 @@ class Admin::MoviesController < AdminController
     params.require(:movie).permit(:poster, :title, :plot, :rating, :year, :poster, :tag_list, category_ids: [])
   end
 end
-

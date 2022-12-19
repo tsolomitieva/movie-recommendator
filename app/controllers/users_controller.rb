@@ -5,9 +5,9 @@ class UsersController < ApplicationController
   def movie_list
     @user = User.find_by(public_list_uid: params[:public_list_uid])
     if @user
-      # get movies with want_to_see status from the given list url 
-      @movies_list = Movie.joins(:users_movies).where(users_movies: {user: @user} )
-      @movies = @movies_list.includes(:categories, :users_movies,  poster_attachment: :blob).page params[:page]
+      # get movies with want_to_see status from the given list url
+      @movies_list = Movie.joins(:users_movies).where(users_movies: { user: @user })
+      @movies = @movies_list.includes(:categories, :users_movies, poster_attachment: :blob).page params[:page]
     else
       redirect_to movies_path, notice: "User wasn't found"
     end
