@@ -26,11 +26,11 @@ class MoviesController < ApplicationController
   # removing like, dislike, want to see by pressing button again
   def delete_movie_status
     @users_movie = current_user.users_movies.find_by(movie_id: @movie.id)
-      if @users_movie.destroy
-        render @movie
-      else
-        render :new, status: :unprocessable_entity 
-      end
+    if @users_movie.destroy
+      render @movie
+    else
+      render :new, status: :unprocessable_entity 
+    end
   end
 
   private
