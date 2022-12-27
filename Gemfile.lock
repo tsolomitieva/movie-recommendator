@@ -120,6 +120,7 @@ GEM
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    htmlbeautifier (1.4.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -344,6 +345,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   faraday (~> 2.4)
+  htmlbeautifier
   image_processing (~> 1.2)
   jbuilder
   jquery-rails

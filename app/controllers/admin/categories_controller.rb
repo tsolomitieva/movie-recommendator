@@ -1,7 +1,6 @@
 class Admin::CategoriesController < AdminController
   before_action :authenticate_user!
-  
-    
+
   def new
     @category = Category.new
   end
@@ -11,7 +10,7 @@ class Admin::CategoriesController < AdminController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to new_admin_category_path(), notice: "Category was added." }
+        format.html { redirect_to new_admin_category_path, notice: 'Category was added.' }
         format.json { render :show, status: :created, location: @category }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -23,11 +22,10 @@ class Admin::CategoriesController < AdminController
   def edit
   end
 
- 
   def update
     respond_to do |format|
       if @category.update(movie_params)
-        format.html { redirect_to admin_category_url(@category), notice: "Category was added." }
+        format.html { redirect_to admin_category_url(@category), notice: 'Category was added.' }
         format.json { render :show, status: :ok, location: @category }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -40,11 +38,11 @@ class Admin::CategoriesController < AdminController
     @category.destroy
 
     respond_to do |format|
-      format.html { redirect_to categories_url, notice: "Category was deleted." }
+      format.html { redirect_to categories_url, notice: 'Category was deleted.' }
       format.json { head :no_content }
     end
   end
-  
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -52,10 +50,8 @@ class Admin::CategoriesController < AdminController
     @category = Category.find(params[:id])
   end
 
-   # Only allow a list of trusted parameters through.
+  # Only allow a list of trusted parameters through.
   def category_params
     params.require(:category).permit(:name)
   end
-
-  
 end
