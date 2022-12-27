@@ -36,6 +36,9 @@ class MoviesController < ApplicationController
   # getting random movie that doesn't exist in user's list
   def random_movie
     @movie = Movie.select{ |m| !UsersMovie.exists?(movie: m,user: current_user)}.sample
+    if @movie.blank?
+      redirect_to movies_path, notice: 'You have evaluate all movies'
+    end
   end
 
   private
