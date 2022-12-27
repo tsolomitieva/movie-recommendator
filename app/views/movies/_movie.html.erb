@@ -9,13 +9,15 @@
       <div class="d-inline p-2 fw-lighter text-white"><%= image_tag 'imdb.png', class:"logo" %><%= movie.rating%></div> 
       <br>
       <br> 
-      
+      <div>
       <% movie.categories.each do |category| %>
-        <p class="d-inline  fw-lighter text-white"><%= category.name %></p>
-        <% if category != movie.categories.last %>
-          <p class="d-inline  fw-lighter text-white">|</p>
-        <% end %>
-      <%end%>
+          <p class="d-inline  fw-lighter text-white"><%= category.name %></p>
+          <% if category != movie.categories.last %>
+            <p class="d-inline  fw-lighter text-white">|</p>
+          <% end %>
+        <%end%>
+      </div>
+     
     
       <div class="btn-group" role="group" aria-label="Basic example">
         <%users_movie = movie.users_movies.detect{ |m| m.user_id == current_user.id }%>

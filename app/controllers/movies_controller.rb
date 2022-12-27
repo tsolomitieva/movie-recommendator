@@ -17,7 +17,7 @@ class MoviesController < ApplicationController
     @movie_list = UsersMovie.where(user: current_user, movie: @movie).first_or_initialize
     @movie_list.status = params[:status]
     if @movie_list.save
-      render @movie 
+      render @movie
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,8 +29,13 @@ class MoviesController < ApplicationController
     if @users_movie.destroy
       render @movie
     else
-      render :new, status: :unprocessable_entity 
+      render :new, status: :unprocessable_entity
     end
+  end
+
+  # getting random movie that doesn't exist in user's list
+  def random_movie
+    @movie = Movie.select{ |m| !UsersMovie.exists?(movie: m,user: current_user)}.sample
   end
 
   private
@@ -45,3 +50,4 @@ class MoviesController < ApplicationController
     params.require(:movie).permit(:poster, :title, :plot, :rating, :year, :poster, :tag_list, category_ids: [])
   end
 end
+

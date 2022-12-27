@@ -60,4 +60,15 @@ body {
         float: none;
         border: none;
     }
+
+}
+.random-button{ 
+  background-image: url(random.png);
+  font-size: 18px;
+  background-position: center;
+  border-radius: 100px;
+  width: 70px;
+  height: 70px;
+  background-size: cover;
+  margin-left: 30px;
 }
