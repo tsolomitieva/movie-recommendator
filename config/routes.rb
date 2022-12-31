@@ -10,10 +10,8 @@ Rails.application.routes.draw do
   end
   resources :categories
 
-  resources :users do
-    get 'movie_list/:public_list_uid', to: 'users#movie_list', on: :member
-  end
- 
+  get 'movie_list/:public_list_uid', to: 'users#movie_list', as: 'movie_list'
+
   namespace :admin do
     resources :users do
       post :ban_account, on: :member

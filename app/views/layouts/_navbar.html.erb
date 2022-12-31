@@ -15,7 +15,7 @@
           <div class="btn-group dropleft">
             <a class="nav-link active bi bi-person-circle pe-2" data-bs-toggle="dropdown" aria-expanded="false"></a>
             <ul class='dropdown-menu' >
-              <li><a class="dropdown-item" href="#">Edit Account</a></li>
+              <li><%= link_to "My List", movie_list_path(public_list_uid: current_user.public_list_uid), class: "dropdown-item" %></li>
               <% if current_user.admin? %>
               <li><%= link_to "Admin Panel", admin_users_path, class: "dropdown-item" %></li>
               <% end %>

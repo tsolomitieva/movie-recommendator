@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: %i[movie_list]
+  before_action :set_user, only: %i[]
 
   def movie_list
     @user = User.find_by(public_list_uid: params[:public_list_uid])
