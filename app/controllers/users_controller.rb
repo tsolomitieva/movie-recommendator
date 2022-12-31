@@ -8,6 +8,12 @@ class UsersController < ApplicationController
       # get movies with want_to_see status from the given list url
       @movies_list = Movie.joins(:users_movies).where(users_movies: { user: @user })
       @movies = @movies_list.includes(:categories, :users_movies, poster_attachment: :blob).page params[:page]
+      if current_user == @user
+        @recommended_movies = Movie.select{ |m| !UsersMovie.exists?(movie: m,user: current_user)}.sample(3)
+        if @recommended_movies.blank?
+          redirect_to movies_path, notice: 'You have evaluate all movies'
+        end
+      end
     else
       redirect_to movies_path, notice: "User wasn't found"
     end

@@ -1,37 +1,38 @@
-<div class="container ">
-  
-  <div class="mt-4 d-flex justify-content-center">
-    <h2 class="text-white mb-2">Movies <%=link_to @user.email%> want's to see</h2>
+<div class='container text-center'>
+  <%= image_tag 'profile.png', class:"profile"%><br>
+  <%=link_to @user.email%><br>
+  <h3 class="text-white mb-2 mt-5">Your list</h3>
+  <div class="row mt-5">
+  <% @movies.each do |movie| %>
+    <% if movie.users_movies.first.status == 'want_to_see'%>
+    <%= render movie %>
+    <% end %>
+  <% end %>
   </div>
+  <h3 class="text-white mb-2 mt-5">Your likes</h3>
+  <div class="row mt-5">
+  <% @movies.each do |movie| %>
+    <% if movie.users_movies.first.status == 'like' %>
+    <%= render movie %>
+    <% end %>
+  <% end %>
+  </div>
+  <h3 class="text-white mb-2 mt-5">Your dislikes</h3>
   <div class="row mt-5">
     <% @movies.each do |movie| %>
-      <% if movie.users_movies.first.status == 'want_to_see'%>
-      <%= render movie %>
-      <% end %>
+    <% if movie.users_movies.first.status == 'dislike' %>
+    <%= render movie %>
     <% end %>
+  <% end %>
   </div>
+  <%if current_user == @user%>
+    <h3 class="text-white mb-2 mt-5">Check out these movies</h3>
+    <div class="row mt-5">
+    <% @recommended_movies.each do |r_movie| %>
+    <%= render r_movie %>
+    <% end %>
+    </div>
+  <% end %>
+</div>
 
-  <div class="mt-4 d-flex justify-content-center">
-    <h2 class="text-white mb-2">Movies <%=link_to @user.email%> liked</h2>
-  </div>
-  
-  <div class="row mt-5">
-    <% @movies.each do |movie| %>
-      <% if movie.users_movies.first.status == 'like' %>
-      <%= render movie %>
-      <% end %>
-    <% end %>
-  </div>
-  <div class="mt-4 d-flex justify-content-center">
-    <h2 class="text-white mb-2">Movies <%=link_to @user.email%> disliked</h2>
-  </div>
-  
-  <div class="row mt-5">
-    <% @movies.each do |movie| %>
-      <% if movie.users_movies.first.status == 'dislike' %>
-      <%= render movie %>
-      <% end %>
-    <% end %>
-  </div>
-  
-  </div>
+

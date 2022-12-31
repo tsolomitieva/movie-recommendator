@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :movies, only: [:index, :show] do
     post :add_movie_status, on: :member
     delete :delete_movie_status, on: :member
-    get :random_movie, on: :collection
   end
   resources :categories
 

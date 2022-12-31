@@ -16,16 +16,14 @@
   </div>
   <div class="row mt-5">
     <% @movies.each do |movie| %>
-      
       <%= render movie %>
-      
-      <% end %>
-    
+    <% end %>
+  </div>
+  <div class="mt-4 d-flex justify-content-center">
+    <%= paginate @movies %>
   </div>
 </div>
 
-
-<%= link_to '',random_movie_movies_path, class: 'btn random-button' %>
 
 
 
