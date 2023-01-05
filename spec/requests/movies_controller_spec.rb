@@ -30,5 +30,19 @@ RSpec.describe "MoviesController", type: :request do
       expect(response).to redirect_to(new_user_session_path)
     end
   end
+  describe "GET#random_movie" do
+    it 'redirects to authentication' do
+      get random_movie_movies_path
+      expect(response).to redirect_to(new_user_session_path)
+    end
+  end
+
+  describe "GET#random_movie" do
+    it 'returns a successful response' do
+      sign_in user
+      get random_movie_movies_path
+      expect(response).to redirect_to(movies_path)
+    end
+  end
   
 end

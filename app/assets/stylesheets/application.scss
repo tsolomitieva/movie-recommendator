@@ -1,5 +1,6 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
 html {
     height: 100%;
 }
@@ -10,54 +11,84 @@ body {
 }
 
 
-.poster{
+.poster {
     height: 250px;
     width: 200px;
 }
 
-.large-poster{
+.small-poster {
+    height: 80px;
+    width: 60px;
+}
+
+.large-poster {
     height: 500px;
     width: 400px;
 }
 
-.logo{
+.logo {
     height: 15px;
     width: 30px;
-    margin-right:5px;
+    margin-right: 5px;
 }
-.pagination a, .pagination span.current, .pagination span.gap {
+
+.profile {
+    height: 100px;
+    width: 110px;
+
+}
+
+.pagination a,
+.pagination span.current,
+.pagination span.gap {
     float: left;
     padding: 0 14px;
     line-height: 38px;
     text-decoration: none;
-    
+
 }
 
 .pagination {
-    
-    .first{
-        padding : 0;
+
+    .first {
+        padding: 0;
         float: none;
         border: none;
     }
+
     .prev {
-        padding : 0;
+        padding: 0;
         float: none;
         border: none;
     }
-    .page{
-        padding : 0;
+
+    .page {
+        padding: 0;
         float: none;
         border: none;
     }
-    .next{
-        padding : 0;
+
+    .next {
+        padding: 0;
         float: none;
         border: none;
     }
-    .last{
-        padding : 0;
+
+    .last {
+        padding: 0;
         float: none;
         border: none;
     }
+
+}
+
+.random-button {
+    background-image: url(random.png);
+    font-size: 18px;
+    background-position: center;
+    border-radius: 100px;
+    width: 70px;
+    height: 70px;
+    background-size: cover;
+    margin-left: 30px;
 }

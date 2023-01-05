@@ -1,31 +1,25 @@
-
 <div class="col-md-4 text-center">
-    <%= turbo_frame_tag movie do %>
-      <%= image_tag(poster_for_movie(movie),class:"poster mt-5")%>
-      
-      <p class="text-white mt-4 fw-light fs-4 mb-2"><%= movie.title %></p>
-      
-      <div class="d-inline p-2 fw-lighter text-white"><%= movie.year %></div>
-      <div class="d-inline p-2 fw-lighter text-white"><%= image_tag 'imdb.png', class:"logo" %><%= movie.rating%></div> 
-      <br>
-      <br> 
-      
+  <%= turbo_frame_tag movie do %>
+    <%= image_tag(poster_for_movie(movie),class:"poster mt-5")%>
+    <p class="text-white mt-4 fw-light fs-4 mb-2"><%= movie.title %></p>
+    <div class="d-inline p-2 fw-lighter text-white"><%= movie.year %></div>
+    <div class="d-inline p-2 fw-lighter text-white"><%= image_tag 'imdb.png', class:"logo" %><%= movie.rating%></div>
+    <br>
+    <br>
+    <div>
       <% movie.categories.each do |category| %>
         <p class="d-inline  fw-lighter text-white"><%= category.name %></p>
         <% if category != movie.categories.last %>
           <p class="d-inline  fw-lighter text-white">|</p>
         <% end %>
       <%end%>
-    
-      <div class="btn-group" role="group" aria-label="Basic example">
-        <%users_movie = movie.users_movies.detect{ |m| m.user_id == current_user.id }%>
-        
-        <%= want_to_see_button(users_movie, movie)%>
-        <%= like_button(users_movie, movie)%>
-        <%= dislike_button(users_movie, movie)%>
-      
-        <%= link_to "More", movie_path(movie), class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline m-2" %>
-      </div>
-
-   <%end%>
+    </div>
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <%users_movie = movie.users_movies.detect{ |m| m.user_id == current_user.id }%>
+      <%= want_to_see_button(users_movie, movie)%>
+      <%= like_button(users_movie, movie)%>
+      <%= dislike_button(users_movie, movie)%>
+      <%= link_to "More", movie_path(movie), class:"btn btn-outline-light  border rounded-pill mt-4 btn-outline m-2" %>
+    </div>
+  <%end%>
 </div>

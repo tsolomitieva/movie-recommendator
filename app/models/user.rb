@@ -6,7 +6,7 @@ class User < ApplicationRecord
   enum role: { user: 0, admin: 1 }
 
   def active_for_authentication?
-    super && !self.ban
+    super && !ban
   end
 
   def generate_list
