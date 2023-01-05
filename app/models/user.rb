@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :users_movies
   has_many :movies, through: :users_movies
+  has_many :users_friends
+  has_many :friends, through: :users_friends, source: :friend
 
   enum role: { user: 0, admin: 1 }
 
