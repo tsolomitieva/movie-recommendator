@@ -1,41 +1,33 @@
-
-
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card  border rounded-3 bg-transparent border-white text-light" >
           <div class="card-body p-5 text-center">
-            <h2 class="fw-bold mb-2">Create an account </h2> 
+            <h2 class="fw-bold mb-2">Create an account </h2>
             <%= render "devise/shared/error_messages", resource: resource %>
-
             <div class="mb-4 mt-5">
-             <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Enter Email", class:"form-control bg-light border" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Enter Email", class:"form-control bg-light border" %>
             </div>
-
             <div class="mb-4 mt-5">
-              
+              <%= f.text_field :username, autofocus: true, autocomplete: "username", placeholder: "Enter Username", class:"form-control bg-light border" %>
+            </div>
+            <div class="mb-4 mt-5">
               <%= f.password_field :password, autocomplete: "new-password", placeholder: "Enter Password", class:"form-control bg-light border" %>
               <% if @minimum_password_length %>
-              <p style="text-align: left !important ">(<%= @minimum_password_length %> characters minimum)</p>
+                <p style="text-align: left !important ">(<%= @minimum_password_length %> characters minimum)</p>
               <% end %>
             </div>
-
             <div class="mb-4 mt-5">
               <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Enter Password Again", class:"form-control bg-light border" %>
             </div>
-
             <div class="mb-4 mt-5">
-             <%= f.submit "Sign up", class: "btn btn-dark mb-4 mt-4" %>
+              <%= f.submit "Sign up", class: "btn btn-dark mb-4 mt-4" %>
             </div>
-             
-           <%= render "devise/shared/links" %>
+            <%= render "devise/shared/links" %>
           </div>
         </div>
       </div>
     </div>
-  <div>
-                      
-<% end %>
-
-
+    <div>
+    <% end %>

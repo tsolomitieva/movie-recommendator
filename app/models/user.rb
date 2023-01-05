@@ -1,5 +1,9 @@
 class User < ApplicationRecord
   before_create :generate_list
+
+  validates :username, presence: true
+  validates :username, uniqueness: true
+
   has_many :users_movies
   has_many :movies, through: :users_movies
 
