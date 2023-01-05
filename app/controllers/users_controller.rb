@@ -16,6 +16,24 @@ class UsersController < ApplicationController
     end
   end
 
+  # search user
+  def search_user
+    @q = User.ransack(params[:q])
+    @users = @q.result
+  end
+
+  # add friend
+  def add_friend
+    @friend = UsersFriend.new(user_id: current_user.id, friend_id: params[:friend_id])
+    respond_to do |_format|
+      if @friend.save
+        redirect_to add_friend_path, notice: 'Friend was added.'
+      else
+        redirect_to add_friend_path, notice: 'Error in adding friend.'
+      end
+    end
+  end
+
   private
 
   def set_user
