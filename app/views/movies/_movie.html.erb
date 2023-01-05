@@ -1,14 +1,13 @@
-
 <div class="col-md-4 text-center">
   <%= turbo_frame_tag movie do %>
     <%= image_tag(poster_for_movie(movie),class:"poster mt-5")%>
     <p class="text-white mt-4 fw-light fs-4 mb-2"><%= movie.title %></p>
     <div class="d-inline p-2 fw-lighter text-white"><%= movie.year %></div>
-    <div class="d-inline p-2 fw-lighter text-white"><%= image_tag 'imdb.png', class:"logo" %><%= movie.rating%></div> 
+    <div class="d-inline p-2 fw-lighter text-white"><%= image_tag 'imdb.png', class:"logo" %><%= movie.rating%></div>
     <br>
-    <br> 
+    <br>
     <div>
-    <% movie.categories.each do |category| %>
+      <% movie.categories.each do |category| %>
         <p class="d-inline  fw-lighter text-white"><%= category.name %></p>
         <% if category != movie.categories.last %>
           <p class="d-inline  fw-lighter text-white">|</p>

@@ -1,7 +1,4 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_user, only: %i[]
-
   def movie_list
     @user = User.find_by(public_list_uid: params[:public_list_uid])
     if @user
@@ -9,10 +6,10 @@ class UsersController < ApplicationController
       @movies_list = Movie.joins(:users_movies).where(users_movies: { user: @user })
       @movies = @movies_list.includes(:categories, :users_movies, poster_attachment: :blob).page params[:page]
       if current_user == @user
-        @recommended_movies = Movie.select{ |m| !UsersMovie.exists?(movie: m,user: current_user)}.sample(3)
-        if @recommended_movies.blank?
-          redirect_to movies_path, notice: 'You have evaluate all movies'
-        end
+        # @recommended_movies = Movie.select{ |m| !UsersMovie.exists?(movie: m,user: current_user)}.sample(3)
+        movie_ids = @user.movies.pluck(:id)
+        @recommended_movies = Movie.where.not(id: movie_ids).sample(3)
+        redirect_to movies_path, notice: 'You have evaluate all movies' if @recommended_movies.blank?
       end
     else
       redirect_to movies_path, notice: "User wasn't found"

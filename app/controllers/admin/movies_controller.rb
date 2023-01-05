@@ -1,6 +1,6 @@
 class Admin::MoviesController < AdminController
   before_action :authenticate_user!
-  before_action :set_movie, only: [:show, :edit]
+  before_action :set_movie, only: [:show, :edit, :update]
 
   def edit
   end

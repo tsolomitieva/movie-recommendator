@@ -1,12 +1,12 @@
-<%= form_with(model: movie, url: admin_movies_path(movie)) do |form|%>
-  
+<% form_path = movie.persisted? ? admin_movie_path(id: movie.id) : admin_movies_path %>
+<%= form_with(model: movie, url: form_path) do |form|%>
   <div class="container py-5 h-100 ">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-       <div class="card-body p-5 text-center">
+        <div class="card-body p-5 text-center">
           <div class="card  bg-transparent text-white border">
             <div class="card-body p-5 text-center">
-              <h2 class="fw-bold mb-2">Insert Movie's Details </h2> 
+              <h2 class="fw-bold mb-2">Insert Movie's Details </h2>
               <% if movie.errors.any? %>
                 <% movie.errors.each do |error| %>
                   <%= error.full_message %>
@@ -29,8 +29,8 @@
                   <%= form.label :year, 'Year'%>
                 </div>
                 <div class="form-floating mb-4 text-dark">
-                   <%= form.text_area :plot,  class: 'form-control  bg-light border', placeholder: 'Plot'%>
-                   <%= form.label :plot, 'Plot' %>
+                  <%= form.text_area :plot,  class: 'form-control  bg-light border', placeholder: 'Plot'%>
+                  <%= form.label :plot, 'Plot' %>
                 </div>
                 <%= form.label :category_ids, 'Choose the most suitable categories', class: 'mb-4'%>
                 <%= form.collection_check_boxes :category_ids, Category.all,:id, :name do |b| %>
@@ -43,14 +43,13 @@
                   <%= form.text_field :tag_list, placeholder:"Action, Drama..", class: 'form-control  bg-light  border'%>
                   <%= form.label :tag_list, 'Tags (separated by commas)'%>
                 </div>
-               </div>
+              </div>
               <%= form.submit class: "btn btn-dark mt-5", value: "Save Movie" %>
             </div>
           </div>
         </div>
-      <div>
-    <%= link_to "Back to movies", admin_movies_path, class: "mt-2 text-muted" %>
-    </div>
-  </div>
-  
-<% end %>
+        <div>
+          <%= link_to "Back to movies", admin_movies_path, class: "mt-2 text-muted" %>
+        </div>
+      </div>
+    <% end %>
