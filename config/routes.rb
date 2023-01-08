@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :categories
 
   get 'movie_list/:public_list_uid', to: 'users#movie_list', as: 'movie_list'
+  post 'add_friend/:friend_id', to: 'users#add_friend', as: 'add_friend'
   resources :users do
     get :search_user, on: :collection
   end

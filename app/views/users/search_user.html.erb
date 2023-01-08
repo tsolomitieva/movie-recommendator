@@ -5,11 +5,13 @@
       <%= f.submit class: "btn btn-outline-light " %>
     </div>
   <%end%>
-  <div class="row mt-5">
-    <ul>
+  <div class="row mt-5 text-white">
+    <% if @users.present?%>
       <% @users.each do |user| %>
-        <li> <%= user.username%></li>
+        <%= image_tag 'profile.png', class: 'profile'%>
+        <%= user.username%>
+        <%= friend_button(user)%>
       <%end%>
-    </div>
-  </ul>
+    <%end%>
+  </div>
 </div>
