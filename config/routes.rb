@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get 'movie_list/:public_list_uid', to: 'users#movie_list', as: 'movie_list'
   post 'add_friend/:friend_id', to: 'users#add_friend', as: 'add_friend'
+  delete 'delete_friend/:friend_id', to: 'users#delete_friend', as: 'delete_friend'
+
   resources :users do
     get :search_user, on: :collection
   end

@@ -36,6 +36,16 @@ class UsersController < ApplicationController
     end
   end
 
+  # delete friend
+  def delete_friend
+    @friend = current_user.users_friends.find_by(friend_id: params[:friend_id])
+    if @friend.destroy
+      redirect_to search_user_users_path, notice: 'Friend was deleted.'
+    else
+      redirect_to search_user_users_path, notice: 'Error in deleting friend.'
+    end
+  end
+
   private
 
   def set_user
