@@ -1,4 +1,4 @@
-<div class="container ">
+<div class="container mt-5">
   <%= search_form_for @q, url: search_user_users_path, method: :get do |f| %>
     <div class="input-group">
       <%= f.text_field :username_eq, class: "form-control ", placeholder: "Insert username" %>
@@ -10,8 +10,20 @@
       <% @users.each do |user| %>
         <%= image_tag 'profile.png', class: 'profile'%>
         <%= user.username%>
-        <%= friend_button(user)%>
+        <% if user != current_user%>
+          <%= friend_button(user)%>
+        <%end%>
       <%end%>
     <%end%>
   </div>
-</div>
+  <div class='friends text-white'>
+    <h2 class='mb-5'> My friends </h2>
+    <div class='row'>
+      <% current_user.friends.each do |friend| %>
+        <div class='col-sm'>
+          <%= image_tag 'profile.png', class: 'profile'%>
+          <%= friend.username%>
+          <%= button_to 'Delete Friend', delete_friend_path(friend_id: friend.id), method: :delete, class: 'btn btn-danger mt-2'%>
+        </div>
+      <%end%>
+    </div>

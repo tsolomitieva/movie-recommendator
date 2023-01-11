@@ -27,10 +27,14 @@ class UsersController < ApplicationController
 
   # add friend
   def add_friend
-    @friend = UsersFriend.new(user_id: current_user.id, friend_id: params[:friend_id])
+    if params[:friend_id] != current_user.id
+      @friend = UsersFriend.new(user_id: current_user.id, friend_id: params[:friend_id])
 
-    if @friend.save
-      redirect_to search_user_users_path, notice: 'Friend was added.'
+      if @friend.save
+        redirect_to search_user_users_path, notice: 'Friend was added.'
+      else
+        redirect_to search_user_users_path, notice: 'Error in adding friend.'
+      end
     else
       redirect_to search_user_users_path, notice: 'Error in adding friend.'
     end
