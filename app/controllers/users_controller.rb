@@ -16,6 +16,40 @@ class UsersController < ApplicationController
     end
   end
 
+  # search user
+  def search_user
+    @q = User.ransack(params[:q])
+    # if user hasn't search yet
+    return unless params[:q].present?
+
+    @users = @q.result
+  end
+
+  # add friend
+  def add_friend
+    if params[:friend_id] != current_user.id
+      @friend = UsersFriend.new(user_id: current_user.id, friend_id: params[:friend_id])
+
+      if @friend.save
+        redirect_to search_user_users_path, notice: 'Friend was added.'
+      else
+        redirect_to search_user_users_path, notice: 'Error in adding friend.'
+      end
+    else
+      redirect_to search_user_users_path, notice: 'Error in adding friend.'
+    end
+  end
+
+  # delete friend
+  def delete_friend
+    @friend = current_user.users_friends.find_by(friend_id: params[:friend_id])
+    if @friend.destroy
+      redirect_to search_user_users_path, notice: 'Friend was deleted.'
+    else
+      redirect_to search_user_users_path, notice: 'Error in deleting friend.'
+    end
+  end
+
   private
 
   def set_user
@@ -23,6 +57,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :public_list_uid)
+    params.require(:user).permit(:email, :username, :password, :public_list_uid)
   end
 end
