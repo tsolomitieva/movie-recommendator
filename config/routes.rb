@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'movie_list/:public_list_uid', to: 'users#movie_list', as: 'movie_list'
   post 'add_friend/:friend_id', to: 'users#add_friend', as: 'add_friend'
   delete 'delete_friend/:friend_id', to: 'users#delete_friend', as: 'delete_friend'
+  get 'match', to: 'users#match', as: 'match'
+  post 'match_lists/:user_id', to: 'users#match_lists', as: 'match_lists'
 
   resources :users do
     get :search_user, on: :collection

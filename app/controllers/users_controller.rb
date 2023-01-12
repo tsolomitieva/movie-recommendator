@@ -50,6 +50,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def match; end
+
+  def match_lists
+    users_movies = Movie.joins(:users_movies).where(users_movies: { user: current_user, status: 0 })
+    friend_movies = Movie.joins(:users_movies).where(users_movies: { user_id: params[:user_id], status: 0 })
+    # need to find a better way
+    @match = Movie.select { |m| users_movies.exists?(id: m.id) && friend_movies.exists?(id: m.id) }.sample
+  end
+
   private
 
   def set_user

@@ -1,0 +1,12 @@
+<div class="container mt-5 text-white text-center">
+  <h2> Choose a friend to watch with</h2>
+  <div class='row mt-5'>
+    <% current_user.friends.each do |user| %>
+      <div class='col-sm'>
+        <%= image_tag 'profile.png', class: 'profile'%>
+        <%= user.username%>
+        <%= button_to 'Match lists', match_lists_path(user_id: user.id), method: :post, class: 'btn btn-primary mt-2'%>
+      </div>
+    <%end%>
+  </div>
+</div>
